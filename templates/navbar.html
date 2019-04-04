@@ -1,0 +1,20 @@
+
+{% for menu in menus %}
+
+<li class="active treeview">
+    <a href="#">
+        <i class="fa fa-dashboard"></i> <span>{{ menu }}</span>
+        <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+        </span>
+    </a>
+
+    <ul class="treeview-menu">
+        {% for item in menus[menu] %}
+        <li>
+            <a href="{{ menus[menu][item] }}"><i class="fa fa-circle-o"></i>{{ item }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+</li>
+{% endfor %}

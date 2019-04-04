@@ -4,10 +4,29 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = '3.1415926'
 
 
+menu_dict = {
+    "主菜单1": {
+        "子菜单1": "/deploy/1",
+        "子菜单2": "/deploy/2",
+        "子菜单3": "/deploy/3"
+    },
+    "主菜单2": {
+        "子菜单1": "/user/1",
+        "子菜单2": "/user/2",
+        "子菜单3": "/user/3"
+    },
+    "主菜单3": {
+        "子菜单1": "/monitor/1",
+        "子菜单2": "/monitor/2",
+        "子菜单3": "/monitor/3"
+    }
+}
+
+
 @app.route('/')
 def hello_world():
     items = (['张三', 'zs'], ['李四', 'ls'], ['王五', 'ww'])
-    return render_template('index.html', items=items)
+    return render_template('index.html', items=items, menus=menu_dict)
 
 
 @app.route('/login', methods=['GET', 'POST'])
