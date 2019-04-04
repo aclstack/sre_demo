@@ -1,6 +1,7 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, flash
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = '3.1415926'
 
 
 @app.route('/')
@@ -14,8 +15,12 @@ def login():
     if request.method == 'GET':
         return render_template('login.html')
     else:
-        return redirect('http://127.0.0.1:8000', code=302)
-
+        user = request.form.get('user')
+        password = request.form.get('password')
+        if user == '1' and password == '1':
+            return render_template('index.html')
+        flash('用户名或密码错误')
+        return render_template('login.html')
 
 
 @app.route('/welcome.html')
